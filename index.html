@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta property="og:title" content="Yunus Kangal · Software Engineer">
+<meta property="og:description" content="Backend systems, digital forensics, data and AI. C#, .NET, Python.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%23111312%22/%3E%3Ctext x=%2216%22 y=%2222%22 font-family=%22Arial%22 font-weight=%22700%22 font-size=%2215%22 fill=%22%235CC48C%22 text-anchor=%22middle%22%3EYK%3C/text%3E%3C/svg%3E">
+<title>Yunus Kangal</title>
+<meta name="description" content="Yunus Kangal — Software Engineer: backend systems, AI integration and data. C#, .NET, Python.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one left-aligned column with a narrow label rail; whitespace and hairlines do the structure, green marks only what matters. */
+:root {
+  --bg: #FFFFFF;
+  --fg: #111312;
+  --muted: #6E726F;
+  --faint: #A3A7A4;
+  --line: #ECEEEC;
+  --hover: #F6F7F6;
+  --accent: #1E7A4C;
+  --accent-soft: #E8F3ED;
+  --font-sans: "Geist", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0C0D0C; --fg: #ECEEEC; --muted: #8C918E; --faint: #5C615E; --line: #1E201F; --hover: #151716;
+    --accent: #5CC48C; --accent-soft: #14251B; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0C0D0C; --fg: #ECEEEC; --muted: #8C918E; --faint: #5C615E; --line: #1E201F; --hover: #151716;
+  --accent: #5CC48C; --accent-soft: #14251B; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg); color: var(--fg);
+  font-family: var(--font-sans); font-size: 16px; line-height: 1.65; letter-spacing: -.003em;
+  -webkit-font-smoothing: antialiased;
+  padding-left: max(24px, env(safe-area-inset-left, 0px));
+  padding-right: max(24px, env(safe-area-inset-right, 0px));
+}
+a { color: inherit; text-decoration: none; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
+::selection { background: var(--accent-soft); }
+
+.page { max-width: 760px; margin: 0 auto; padding-block: 120px 64px; display: grid; gap: 112px; }
+
+/* Hero */
+.hero { display: grid; gap: 28px; }
+.status { display: inline-flex; align-items: center; gap: 10px; font-size: 14px; color: var(--muted); }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); position: relative; }
+.dot::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 1px solid var(--accent); animation: pulse 2.4s ease-out infinite; }
+@keyframes pulse { from { transform: scale(.6); opacity: .9; } to { transform: scale(1.8); opacity: 0; } }
+h1 { margin: 0; font-size: clamp(40px, 6.4vw, 60px); line-height: 1.05; font-weight: 600; letter-spacing: -.035em; text-wrap: balance; }
+h1 .soft { color: var(--faint); }
+.lede { margin: 0; font-size: clamp(18px, 2.2vw, 21px); line-height: 1.55; color: var(--muted); max-width: 34em; text-wrap: pretty; }
+.lede strong { color: var(--fg); font-weight: 500; }
+.links { display: flex; flex-wrap: wrap; gap: 28px; font-size: 15px; }
+.links a { color: var(--fg); display: inline-flex; align-items: center; gap: 6px; border-bottom: 1px solid var(--line); padding-bottom: 2px; transition: border-color .2s; }
+.links a:hover { border-color: var(--fg); }
+.links a.primary { color: var(--accent); border-color: var(--accent-soft); }
+.links a.primary:hover { border-color: var(--accent); }
+
+/* Sections */
+.sec { display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 24px; }
+.sec > h2 { margin: 0; font-size: 13px; font-weight: 500; color: var(--faint); letter-spacing: .01em; padding-top: 3px; }
+.body { min-width: 0; display: grid; gap: 18px; }
+.prose { display: grid; gap: 16px; max-width: 36em; }
+.prose p { margin: 0; }
+.prose a { color: var(--accent); border-bottom: 1px solid var(--accent-soft); }
+.prose a:hover { border-color: var(--accent); }
+
+/* List rows (experience, certificates) */
+.list { display: grid; }
+.item { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 24px; padding-block: 16px; border-top: 1px solid var(--line); }
+.item:first-child { border-top: 0; padding-top: 0; }
+.item h3 { margin: 0; font-size: 16px; font-weight: 500; }
+.item .sub { color: var(--muted); font-size: 15px; }
+.item .when { font-family: var(--font-mono); font-size: 13px; color: var(--faint); white-space: nowrap; font-variant-numeric: tabular-nums; padding-top: 2px; }
+.item p { grid-column: 1 / -1; margin: 4px 0 0; color: var(--muted); font-size: 15px; max-width: 36em; }
+.item ul { grid-column: 1 / -1; margin: 8px 0 0; padding-left: 18px; color: var(--muted); font-size: 15px; max-width: 38em; display: grid; gap: 6px; }
+.item li::marker { color: var(--faint); }
+
+/* Projects */
+.projects { display: grid; }
+.proj { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px 24px; padding: 20px 16px; margin-inline: -16px; border-radius: 12px; transition: background .2s; }
+.proj:hover { background: var(--hover); }
+.proj h3 { margin: 0; font-size: 16px; font-weight: 500; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.proj p { margin: 0; grid-column: 1; color: var(--muted); font-size: 15px; max-width: 34em; }
+.proj .arrow { color: var(--faint); transition: transform .2s, color .2s; grid-row: 1; grid-column: 2; }
+.proj:hover .arrow { transform: translate(3px, -3px); color: var(--accent); }
+.proj .stack { grid-column: 1; font-family: var(--font-mono); font-size: 12px; color: var(--faint); }
+.badge { font-size: 12px; font-weight: 500; color: var(--accent); background: var(--accent-soft); padding: 2px 8px; border-radius: 999px; }
+.proj.feature h3 { font-size: 18px; }
+.proj code { font-family: var(--font-mono); font-size: 13px; color: var(--fg); }
+
+/* Focus */
+.focus { display: grid; gap: 22px; }
+.focus div { display: grid; gap: 4px; padding-left: 16px; border-left: 2px solid var(--line); }
+.focus div:first-child { border-left-color: var(--accent); }
+.focus h3 { margin: 0; font-size: 16px; font-weight: 500; }
+.focus p { margin: 0; color: var(--muted); font-size: 15px; max-width: 36em; }
+
+/* Skills */
+.skills { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 32px; }
+.skills h3 { margin: 0 0 6px; font-size: 13px; font-weight: 500; color: var(--faint); }
+.skills p { margin: 0; font-size: 15px; }
+
+/* Certificates */
+.cert a.verify { font-size: 13px; color: var(--accent); white-space: nowrap; }
+.cert a.verify:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* Contact */
+.contact-mail { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.contact-mail a#email { font-size: clamp(20px, 3.4vw, 28px); font-weight: 500; letter-spacing: -.02em; user-select: all; overflow-wrap: anywhere; }
+.copy { font: inherit; font-size: 13px; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg); color: var(--muted); cursor: pointer; transition: border-color .2s, color .2s; }
+.copy:hover { border-color: var(--fg); color: var(--fg); }
+
+footer { font-size: 13px; color: var(--faint); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 24px; }
+
+/* Entrance */
+@keyframes in { from { opacity: .01; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.hero > *, .sec { animation: in .8s cubic-bezier(.2,.7,.2,1) both; }
+.hero > *:nth-child(2) { animation-delay: .06s; } .hero > *:nth-child(3) { animation-delay: .12s; } .hero > *:nth-child(4) { animation-delay: .18s; }
+.sec { animation-delay: .26s; }
+@media (prefers-reduced-motion: reduce) {
+  .hero > *, .sec { animation: none; } .dot::after { animation: none; display: none; }
+  .proj, .proj .arrow, .links a { transition: none; }
+}
+
+@media (max-width: 640px) {
+  .page { padding-block: 64px 40px; gap: 72px; }
+  .sec { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .skills { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .item { grid-template-columns: minmax(0, 1fr); }
+  .item .when { padding-top: 0; }
+}
+</style>
+</head>
+<body>
+<main class="page">
+  <header class="hero">
+    <div class="status"><span class="dot" aria-hidden="true"></span>Open to work · İstanbul</div>
+    <h1>Yunus Kangal<br><span class="soft">Software Engineer</span></h1>
+    <p class="lede">Backend systems, digital forensics, data and AI, built with <strong>C#, .NET and Python</strong>. Mathematical Engineer from Yıldız Technical University.</p>
+    <nav class="links" aria-label="Links">
+      <a class="primary" href="#contact">Get in touch</a>
+      <a href="https://github.com/Yunuskngl" target="_blank" rel="noopener">GitHub ↗</a>
+      <a href="https://www.linkedin.com/in/yunus-kangal-53a703229/" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </nav>
+  </header>
+
+  <section class="sec" aria-labelledby="about-h">
+    <h2 id="about-h">About</h2>
+    <div class="body prose">
+      <p>I like problems I can reason about, model and test. That comes from my background in mathematical engineering, and it’s how I approach engineering work: clear data, clear interfaces, code that holds up.</p>
+      <p>Most of my experience so far is in digital forensics. At TÜBİTAK BİLGEM I built data-extraction features for a forensics application, and my graduation thesis studied how iOS manages cryptographic keys. It led to <a href="#projects">dYKcrpytor</a>, an open-source tool that decrypts the iOS Keychain.</p>
+      <p>Working with extracted data made me care about what happens next: turning raw records into something you can query, analyze and learn from. That is why I studied machine learning and why I’m now building with LLM APIs, alongside deepening ASP.NET Core and software architecture.</p>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="focus-h">
+    <h2 id="focus-h">Focus areas</h2>
+    <div class="body focus">
+      <div>
+        <h3>Digital forensics &amp; mobile security</h3>
+        <p>Mobile data extraction, iOS Keychain and Secure Enclave, key management, encrypted app databases such as SQLCipher. Two years on a production forensics team and a thesis in the field.</p>
+      </div>
+      <div>
+        <h3>Data</h3>
+        <p>SQL and relational modelling, parsing messy formats (SQLite, plist) into clean, queryable datasets, and Python for analysis. Foundations in supervised and unsupervised machine learning.</p>
+      </div>
+      <div>
+        <h3>AI</h3>
+        <p>Bringing language models into real software: LLM APIs, tool use, retrieval over your own data and the Model Context Protocol. Currently building with the Claude API.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="exp-h">
+    <h2 id="exp-h">Experience</h2>
+    <div class="body list">
+      <div class="item">
+        <h3>Software Engineer <span class="sub">· TÜBİTAK BİLGEM · Part-time</span></h3>
+        <span class="when">Nov 2024 – Aug 2026</span>
+        <ul>
+          <li>Worked as a researcher and software developer on the A3 project, a digital forensics application.</li>
+          <li>Improved my C#, SQL and Python skills by developing operational features such as bug fixes and WhatsApp data extraction.</li>
+          <li>Although the project was a desktop application, developed using a microservices architecture, and reinforced my CI/CD experience by actively using Jenkins, Docker and cloud systems.</li>
+          <li>Decrypted the encryption algorithms in the cryptographic structure of the iOS Keychain architecture, enabling key extraction for 90% of iOS versions.</li>
+        </ul>
+      </div>
+      <div class="item">
+        <h3>Software Engineering Intern <span class="sub">· TÜBİTAK BİLGEM</span></h3>
+        <span class="when">Sep 2024 – Oct 2024</span>
+        <ul>
+          <li>Wrote automated data extraction scripts in Python and C# to eliminate repetitive manual tasks and improve workflow speed.</li>
+          <li>Collaborated with the team to build software prototypes and generate automated system health reports.</li>
+        </ul>
+      </div>
+      <div class="item">
+        <h3>Algorithm Team Leader &amp; Mentor <span class="sub">· Yıldız Technical University SKY LAB</span></h3>
+        <span class="when">Oct 2023 – Jun 2026</span>
+        <ul>
+          <li>Led and mentored a team of 12 students, teaching core software engineering concepts, algorithms and clean code practices.</li>
+          <li>Organized technical workshops and code reviews to help the team improve their practical problem-solving skills.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="edu-h">
+    <h2 id="edu-h">Education</h2>
+    <div class="body list">
+      <div class="item">
+        <h3>B.Sc. Mathematical Engineering <span class="sub">· Yıldız Technical University</span></h3>
+        <span class="when">Jun 2026</span>
+        <p><strong style="color:var(--fg); font-weight:500">Thesis:</strong> Cryptographic Key Management Vulnerabilities in Mobile Devices. Advisor: Assoc. Prof. Serkan Onar.</p>
+        <ul>
+          <li>Examined the iOS Secure Enclave and Keychain from a mobile forensics and mathematical engineering perspective, testing how far they can be bypassed depending on the device’s lock state.</li>
+          <li>On an iOS 17 full file system image, showed that in the After First Unlock state the decryption keys remain in memory, so the Keychain can be fully decrypted.</li>
+          <li>In a case study on Signal Messenger, recovered its 256-bit SQLCipher key from the Keychain and read the full chat history in plaintext: security depends on key management, not only on strong algorithms.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="projects" aria-labelledby="proj-h">
+    <h2 id="proj-h">Projects</h2>
+    <div class="body projects">
+      <a class="proj feature" href="https://github.com/Yunuskngl/dYKcrpytor-Keychain-Decryptor-" target="_blank" rel="noopener">
+        <h3>dYKcrpytor <span class="badge">Graduation thesis</span></h3>
+        <span class="arrow" aria-hidden="true">↗</span>
+        <p>Open-source tool built for my thesis. Decrypts the iOS Keychain from <code>keychain-2.db</code> and <code>backup_keychain_v2.plist</code> without commercial forensics software, handling the AES-GCM layers and converting backup plists into a clean SQLite database for investigators.</p>
+        <span class="stack">Python · PyQt6 · SQLite · Cryptography</span>
+      </a>
+      <a class="proj" href="https://github.com/Yunuskngl/Phase_Space_and_Stability_Analysis_" target="_blank" rel="noopener">
+        <h3>Phase Space &amp; Stability Analysis</h3>
+        <span class="arrow" aria-hidden="true">↗</span>
+        <p>Visualizations of fixed points, phase portraits and Lyapunov exponents for dynamical systems.</p>
+        <span class="stack">MATLAB</span>
+      </a>
+      <a class="proj" href="https://github.com/skylab-kulubu/Algolab_new" target="_blank" rel="noopener">
+        <h3>Algolab</h3>
+        <span class="arrow" aria-hidden="true">↗</span>
+        <p>Algorithm training material built with the YTU SKY LAB team.</p>
+        <span class="stack">C++</span>
+      </a>
+      <a class="proj" href="https://github.com/Yunuskngl/Sky_Lab_Akademi" target="_blank" rel="noopener">
+        <h3>SKY LAB Akademi</h3>
+        <span class="arrow" aria-hidden="true">↗</span>
+        <p>Code and exercises from the C programming course I taught.</p>
+        <span class="stack">C</span>
+      </a>
+      <a class="proj" href="https://github.com/Yunuskngl/Leetcode_Hackerrank_Solutions" target="_blank" rel="noopener">
+        <h3>LeetCode &amp; HackerRank Solutions</h3>
+        <span class="arrow" aria-hidden="true">↗</span>
+        <p>Ongoing practice in algorithms and data structures.</p>
+        <span class="stack">C++</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="skills-h">
+    <h2 id="skills-h">Skills</h2>
+    <div class="body skills">
+      <div><h3>Languages</h3><p>C#, Python, TypeScript, SQL, C/C++</p></div>
+      <div><h3>Backend</h3><p>.NET, ASP.NET Core, REST APIs, Entity Framework, Node.js</p></div>
+      <div><h3>Databases</h3><p>PostgreSQL, MySQL, SQLite, Redis</p></div>
+      <div><h3>Forensics &amp; security</h3><p>Mobile data extraction, iOS Keychain, AES-GCM, SQLCipher</p></div>
+      <div><h3>Data &amp; AI</h3><p>NumPy, scikit-learn, ML fundamentals, LLM APIs</p></div>
+      <div><h3>Tools</h3><p>Git, Docker, Jenkins, CI/CD, Linux</p></div>
+      <div><h3>Architecture</h3><p>Microservices, REST, desktop apps</p></div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="cert-h">
+    <h2 id="cert-h">Certificates</h2>
+    <div class="body list">
+      <div class="item cert">
+        <h3>Unsupervised Learning, Recommenders, Reinforcement Learning</h3>
+        <a class="verify" href="https://coursera.org/share/f22261c2f1704c0488bc8239b3de7bb8" target="_blank" rel="noopener">Verify ↗</a>
+        <p>DeepLearning.AI · Coursera · 2024</p>
+      </div>
+      <div class="item cert">
+        <h3>Supervised Machine Learning: Regression and Classification</h3>
+        <a class="verify" href="https://coursera.org/share/e2a56b3a6a36e8ac28efb0ad33f05569" target="_blank" rel="noopener">Verify ↗</a>
+        <p>DeepLearning.AI · Coursera · 2024</p>
+      </div>
+      <div class="item cert">
+        <h3>Object-Oriented Data Structures in C++</h3>
+        <a class="verify" href="https://coursera.org/share/153cfcdb255562f96088b25f2331eb85" target="_blank" rel="noopener">Verify ↗</a>
+        <p>University of Illinois Urbana-Champaign · Coursera · 2023</p>
+      </div>
+      <div class="item cert">
+        <h3>Software Development with C and C++</h3>
+        <a class="verify" href="https://www.udemy.com/certificate/UC-e839a5be-ddd8-4cca-8ffd-f9d76b754114/" target="_blank" rel="noopener">Verify ↗</a>
+        <p>Kaan Academy · Udemy · 2023</p>
+      </div>
+      <div class="item cert">
+        <h3>Complete C Programming, Beginner to Advanced</h3>
+        <a class="verify" href="https://www.udemy.com/certificate/UC-5f222eb4-5a25-4ad9-80b0-abfa03f6b005/" target="_blank" rel="noopener">Verify ↗</a>
+        <p>Can Boz · Udemy · 2023</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="contact" aria-labelledby="contact-h">
+    <h2 id="contact-h">Contact</h2>
+    <div class="body">
+      <div class="contact-mail"><a id="email" href="mailto:yunuskanngal@gmail.com">yunuskanngal@gmail.com</a><button class="copy" id="copy-email" type="button">Copy</button></div>
+      <nav class="links" aria-label="Profiles">
+        <a href="https://github.com/Yunuskngl" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="https://www.linkedin.com/in/yunus-kangal-53a703229/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="https://leetcode.com/u/yunuskanngal/" target="_blank" rel="noopener">LeetCode ↗</a>
+        <a href="https://www.hackerrank.com/profile/yunuskanngal" target="_blank" rel="noopener">HackerRank ↗</a>
+      </nav>
+    </div>
+  </section>
+
+  <footer><span>© 2026 Yunus Kangal</span><span>İstanbul</span></footer>
+</main>
+
+<script>
+(function () {
+  const btn = document.getElementById('copy-email');
+  const el = document.getElementById('email');
+  btn.addEventListener('click', () => {
+    const done = () => { btn.textContent = 'Copied'; setTimeout(() => btn.textContent = 'Copy', 1600); };
+    const fallback = () => { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = 'Press ⌘C'; };
+    try { navigator.clipboard.writeText(el.textContent.trim()).then(done, fallback); } catch (e) { fallback(); }
+  });
+})();
+</script>
+</body>
+</html>
