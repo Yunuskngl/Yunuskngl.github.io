@@ -3,344 +3,423 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Yunus Kangal · Software Engineer</title>
+<meta name="description" content="Yunus Kangal — Software Engineer: backend systems, digital forensics, data and AI. C#, .NET, Python.">
 <meta property="og:title" content="Yunus Kangal · Software Engineer">
 <meta property="og:description" content="Backend systems, digital forensics, data and AI. C#, .NET, Python.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%23111312%22/%3E%3Ctext x=%2216%22 y=%2222%22 font-family=%22Arial%22 font-weight=%22700%22 font-size=%2215%22 fill=%22%235CC48C%22 text-anchor=%22middle%22%3EYK%3C/text%3E%3C/svg%3E">
-<title>Yunus Kangal</title>
-<meta name="description" content="Yunus Kangal — Software Engineer: backend systems, AI integration and data. C#, .NET, Python.">
+<meta property="og:image" content="https://yunuskngl.github.io/assets/yunus.png">
+<meta name="theme-color" content="#F1F1EF">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%23161616%22/%3E%3Ctext x=%2216%22 y=%2221.5%22 font-family=%22Arial%22 font-weight=%22700%22 font-size=%2214%22 fill=%22%23F1F1EF%22 text-anchor=%22middle%22%3EYK%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
-/* Layout: one left-aligned column with a narrow label rail; whitespace and hairlines do the structure, green marks only what matters. */
 :root {
-  --bg: #FFFFFF;
-  --fg: #111312;
-  --muted: #6E726F;
-  --faint: #A3A7A4;
-  --line: #ECEEEC;
-  --hover: #F6F7F6;
-  --accent: #1E7A4C;
-  --accent-soft: #E8F3ED;
-  --font-sans: "Geist", "Helvetica Neue", Arial, system-ui, sans-serif;
-  --font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --bg: #F1F1EF;
+  --ink: #161616;
+  --muted: #5E5E5B;
+  --faint: #9C9C98;
+  --line: #D9D9D5;
+  --card: #E9E9E6;
+  --pad: clamp(20px, 4vw, 56px);
+  --font: "Inter Tight", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #0C0D0C; --fg: #ECEEEC; --muted: #8C918E; --faint: #5C615E; --line: #1E201F; --hover: #151716;
-    --accent: #5CC48C; --accent-soft: #14251B; color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #0C0D0C; --fg: #ECEEEC; --muted: #8C918E; --faint: #5C615E; --line: #1E201F; --hover: #151716;
-  --accent: #5CC48C; --accent-soft: #14251B; color-scheme: dark;
-}
-
 * { box-sizing: border-box; }
-body {
-  margin: 0;
-  background: var(--bg); color: var(--fg);
-  font-family: var(--font-sans); font-size: 16px; line-height: 1.65; letter-spacing: -.003em;
-  -webkit-font-smoothing: antialiased;
-  padding-left: max(24px, env(safe-area-inset-left, 0px));
-  padding-right: max(24px, env(safe-area-inset-right, 0px));
-}
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font); font-weight: 400; line-height: 1.55; -webkit-font-smoothing: antialiased; }
 a { color: inherit; text-decoration: none; }
-:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
-::selection { background: var(--accent-soft); }
+::selection { background: var(--ink); color: var(--bg); }
+:focus-visible { outline: 1.5px solid var(--ink); outline-offset: 4px; border-radius: 2px; }
 
-.page { max-width: 760px; margin: 0 auto; padding-block: 120px 64px; display: grid; gap: 112px; }
+/* ---------- nav ---------- */
+.nav { position: fixed; inset: 0 0 auto 0; z-index: 20; display: flex; align-items: center; gap: 40px; padding: 22px var(--pad); transition: background .3s, box-shadow .3s; }
+.nav.scrolled { background: rgba(241,241,239,.86); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 1px 0 var(--line); }
+.logo { display: grid; place-items: center; width: 34px; height: 34px; border: 1.5px solid var(--ink); border-radius: 50%; font-size: 12px; font-weight: 500; letter-spacing: .02em; }
+.nav ul { display: flex; gap: 26px; margin: 0; padding: 0; list-style: none; font-size: 13.5px; }
+.nav ul a { position: relative; color: var(--ink); }
+.nav ul a::after { content: ""; position: absolute; left: 0; right: 100%; bottom: -3px; height: 1px; background: currentColor; transition: right .25s; }
+.nav ul a:hover::after { right: 0; }
+.cta { margin-left: auto; font-size: 13.5px; text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; white-space: nowrap; }
+.cta:hover { text-decoration-thickness: 2px; }
 
-/* Hero */
-.hero { display: grid; gap: 28px; }
-.status { display: inline-flex; align-items: center; gap: 10px; font-size: 14px; color: var(--muted); }
-.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); position: relative; }
-.dot::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 1px solid var(--accent); animation: pulse 2.4s ease-out infinite; }
-@keyframes pulse { from { transform: scale(.6); opacity: .9; } to { transform: scale(1.8); opacity: 0; } }
-h1 { margin: 0; font-size: clamp(40px, 6.4vw, 60px); line-height: 1.05; font-weight: 600; letter-spacing: -.035em; text-wrap: balance; }
-h1 .soft { color: var(--faint); }
-.lede { margin: 0; font-size: clamp(18px, 2.2vw, 21px); line-height: 1.55; color: var(--muted); max-width: 34em; text-wrap: pretty; }
-.lede strong { color: var(--fg); font-weight: 500; }
-.links { display: flex; flex-wrap: wrap; gap: 28px; font-size: 15px; }
-.links a { color: var(--fg); display: inline-flex; align-items: center; gap: 6px; border-bottom: 1px solid var(--line); padding-bottom: 2px; transition: border-color .2s; }
-.links a:hover { border-color: var(--fg); }
-.links a.primary { color: var(--accent); border-color: var(--accent-soft); }
-.links a.primary:hover { border-color: var(--accent); }
+/* ---------- hero ---------- */
+.hero { position: relative; min-height: 100svh; display: grid; grid-template-columns: 56px minmax(0, 1fr) minmax(0, 1fr); padding: 0 var(--pad); overflow: hidden; }
+.rail { grid-row: 1; grid-column: 1; display: flex; flex-direction: column; align-items: flex-start; padding: 130px 0 40px; color: var(--faint); font-size: 12px; letter-spacing: .02em; }
+.rail .label, .rail .year { writing-mode: vertical-rl; transform: rotate(180deg); }
+.rail .rule { flex: 1; width: 1px; background: var(--line); margin: 22px 0 22px 7px; }
+.hero-text { grid-column: 2; display: flex; flex-direction: column; padding: 150px 0 48px; }
+.stats { display: flex; gap: 44px; }
+.stat b { display: block; font-weight: 200; font-size: clamp(34px, 3.6vw, 48px); line-height: 1; letter-spacing: -.02em; }
+.stat b sup { font-size: .5em; vertical-align: .9em; margin-right: 2px; }
+.stat span { display: block; margin-top: 8px; font-size: 12.5px; color: var(--muted); }
+.hello { margin: auto 0 0; padding-top: 60px; font-weight: 200; font-size: clamp(110px, 15.5vw, 236px); line-height: .82; letter-spacing: -.055em; }
+.tag { margin: 26px 0 0; font-size: clamp(16px, 1.4vw, 19px); }
+.tag small { display: block; margin-top: 10px; max-width: 30em; font-size: 14.5px; color: var(--muted); }
+.scroll { margin-top: 56px; font-size: 13.5px; display: inline-flex; gap: 8px; align-items: center; }
+.scroll i { font-style: normal; display: inline-block; animation: bob 1.8s ease-in-out infinite; }
+@keyframes bob { 50% { transform: translateY(4px); } }
+.portrait { grid-column: 3; align-self: end; justify-self: end; width: min(100%, 640px); margin-right: calc(var(--pad) * -1); }
+.portrait img { display: block; width: 100%; height: auto; filter: contrast(1.04); }
 
-/* Sections */
-.sec { display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 24px; }
-.sec > h2 { margin: 0; font-size: 13px; font-weight: 500; color: var(--faint); letter-spacing: .01em; padding-top: 3px; }
-.body { min-width: 0; display: grid; gap: 18px; }
-.prose { display: grid; gap: 16px; max-width: 36em; }
-.prose p { margin: 0; }
-.prose a { color: var(--accent); border-bottom: 1px solid var(--accent-soft); }
-.prose a:hover { border-color: var(--accent); }
+/* ---------- sections ---------- */
+section.block { display: grid; grid-template-columns: 56px minmax(0, 1fr); padding: 0 var(--pad); }
+.block-inner { grid-column: 2; border-top: 1px solid var(--line); padding: 72px 0 88px; display: grid; grid-template-columns: minmax(180px, 1fr) minmax(0, 2.6fr); gap: 32px 56px; }
+.block-head .num { display: block; font-size: 12px; color: var(--faint); letter-spacing: .04em; margin-bottom: 14px; }
+.block-head h2 { margin: 0; font-weight: 300; font-size: clamp(34px, 4vw, 56px); line-height: 1; letter-spacing: -.035em; }
+.block-head p { margin: 16px 0 0; color: var(--muted); font-size: 14px; max-width: 18em; }
 
-/* List rows (experience, certificates) */
-.list { display: grid; }
-.item { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 24px; padding-block: 16px; border-top: 1px solid var(--line); }
-.item:first-child { border-top: 0; padding-top: 0; }
-.item h3 { margin: 0; font-size: 16px; font-weight: 500; }
-.item .sub { color: var(--muted); font-size: 15px; }
-.item .when { font-family: var(--font-mono); font-size: 13px; color: var(--faint); white-space: nowrap; font-variant-numeric: tabular-nums; padding-top: 2px; }
-.item p { grid-column: 1 / -1; margin: 4px 0 0; color: var(--muted); font-size: 15px; max-width: 36em; }
-.item ul { grid-column: 1 / -1; margin: 8px 0 0; padding-left: 18px; color: var(--muted); font-size: 15px; max-width: 38em; display: grid; gap: 6px; }
-.item li::marker { color: var(--faint); }
+/* experience / education rows */
+.rows { display: grid; }
+.row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 24px; padding: 28px 0; border-bottom: 1px solid var(--line); }
+.row:first-child { padding-top: 0; }
+.row:last-child { border-bottom: 0; padding-bottom: 0; }
+.row h3 { margin: 0; font-weight: 400; font-size: 21px; letter-spacing: -.01em; }
+.row .org { grid-column: 1; color: var(--muted); font-size: 14.5px; }
+.row .when { grid-row: 1; grid-column: 2; font-size: 13px; color: var(--muted); white-space: nowrap; padding-top: 5px; }
+.row ul, .row > p { grid-column: 1 / -1; margin: 14px 0 0; color: var(--muted); font-size: 15px; max-width: 44em; }
+.row ul { padding-left: 18px; display: grid; gap: 7px; }
+.row ul li::marker { color: var(--faint); }
 
-/* Projects */
-.projects { display: grid; }
-.proj { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px 24px; padding: 20px 16px; margin-inline: -16px; border-radius: 12px; transition: background .2s; }
-.proj:hover { background: var(--hover); }
-.proj h3 { margin: 0; font-size: 16px; font-weight: 500; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-.proj p { margin: 0; grid-column: 1; color: var(--muted); font-size: 15px; max-width: 34em; }
-.proj .arrow { color: var(--faint); transition: transform .2s, color .2s; grid-row: 1; grid-column: 2; }
-.proj:hover .arrow { transform: translate(3px, -3px); color: var(--accent); }
-.proj .stack { grid-column: 1; font-family: var(--font-mono); font-size: 12px; color: var(--faint); }
-.badge { font-size: 12px; font-weight: 500; color: var(--accent); background: var(--accent-soft); padding: 2px 8px; border-radius: 999px; }
-.proj.feature h3 { font-size: 18px; }
-.proj code { font-family: var(--font-mono); font-size: 13px; color: var(--fg); }
+/* projects */
+.projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.proj { position: relative; display: flex; flex-direction: column; gap: 10px; padding: 26px 26px 24px; background: var(--card); border-radius: 18px; transition: background .25s, transform .25s; }
+.proj:hover { background: #E2E2DE; }
+.proj.wide { grid-column: 1 / -1; }
+.proj .kicker { font-size: 12px; color: var(--muted); letter-spacing: .02em; }
+.proj h3 { margin: 0; font-weight: 400; font-size: 24px; letter-spacing: -.02em; line-height: 1.15; }
+.proj p { margin: 0; color: var(--muted); font-size: 15px; max-width: 46em; }
+.proj code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .86em; background: rgba(0,0,0,.05); padding: 1px 5px; border-radius: 4px; }
+.proj .stack { margin-top: auto; padding-top: 10px; font-size: 12.5px; color: var(--faint); }
+.proj .links { display: flex; gap: 18px; font-size: 13.5px; }
+.proj .links a { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.proj .links a:hover { text-decoration-thickness: 2px; }
+a.proj h3 { padding-right: 28px; }
+a.proj .arrow { position: absolute; top: 24px; right: 26px; font-size: 18px; transition: transform .25s; }
+a.proj:hover .arrow { transform: translate(3px, -3px); }
 
-/* Focus */
-.focus { display: grid; gap: 22px; }
-.focus div { display: grid; gap: 4px; padding-left: 16px; border-left: 2px solid var(--line); }
-.focus div:first-child { border-left-color: var(--accent); }
-.focus h3 { margin: 0; font-size: 16px; font-weight: 500; }
-.focus p { margin: 0; color: var(--muted); font-size: 15px; max-width: 36em; }
+/* skills */
+.skills { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 40px; }
+.skill { padding: 16px 0; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 9.5em minmax(0, 1fr); gap: 16px; font-size: 15px; }
+.skill dt { color: var(--faint); font-size: 13px; padding-top: 2px; }
+.skill dd { margin: 0; }
 
-/* Skills */
-.skills { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 32px; }
-.skills h3 { margin: 0 0 6px; font-size: 13px; font-weight: 500; color: var(--faint); }
-.skills p { margin: 0; font-size: 15px; }
+/* certificates */
+.certs { display: grid; }
+.cert { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 24px; padding: 20px 0; border-bottom: 1px solid var(--line); }
+.cert:first-child { padding-top: 0; }
+.cert:last-child { border-bottom: 0; }
+.cert h3 { margin: 0; font-weight: 400; font-size: 18px; letter-spacing: -.01em; }
+.cert p { margin: 0; grid-column: 1; color: var(--muted); font-size: 14px; }
+.cert a { grid-row: 1 / span 2; grid-column: 2; align-self: center; font-size: 13.5px; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
 
-/* Certificates */
-.cert a.verify { font-size: 13px; color: var(--accent); white-space: nowrap; }
-.cert a.verify:hover { text-decoration: underline; text-underline-offset: 3px; }
+/* contact */
+.contact { background: var(--ink); color: var(--bg); margin-top: 24px; }
+.contact .block-inner { border-top: 0; padding: 96px 0 40px; grid-template-columns: 1fr; }
+.contact .big { margin: 0; font-weight: 200; font-size: clamp(56px, 9vw, 140px); line-height: .9; letter-spacing: -.05em; }
+.contact .mail { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 34px; font-size: clamp(18px, 2vw, 26px); font-weight: 300; }
+.contact .mail a { text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px; }
+.copy { font: inherit; font-size: 12.5px; color: var(--bg); background: transparent; border: 1px solid rgba(241,241,239,.35); border-radius: 999px; padding: 6px 14px; cursor: pointer; transition: background .2s, color .2s; }
+.copy:hover { background: var(--bg); color: var(--ink); }
+.socials { display: flex; flex-wrap: wrap; gap: 26px; margin-top: 46px; font-size: 14px; }
+.socials a { opacity: .8; } .socials a:hover { opacity: 1; }
+.foot { display: flex; justify-content: space-between; margin-top: 90px; padding-top: 22px; border-top: 1px solid rgba(241,241,239,.16); font-size: 12.5px; color: #8E8E8A; }
 
-/* Contact */
-.contact-mail { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
-.contact-mail a#email { font-size: clamp(20px, 3.4vw, 28px); font-weight: 500; letter-spacing: -.02em; user-select: all; overflow-wrap: anywhere; }
-.copy { font: inherit; font-size: 13px; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg); color: var(--muted); cursor: pointer; transition: border-color .2s, color .2s; }
-.copy:hover { border-color: var(--fg); color: var(--fg); }
-
-footer { font-size: 13px; color: var(--faint); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 24px; }
-
-/* Entrance */
-@keyframes in { from { opacity: .01; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-.hero > *, .sec { animation: in .8s cubic-bezier(.2,.7,.2,1) both; }
-.hero > *:nth-child(2) { animation-delay: .06s; } .hero > *:nth-child(3) { animation-delay: .12s; } .hero > *:nth-child(4) { animation-delay: .18s; }
-.sec { animation-delay: .26s; }
+/* reveal */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.in { opacity: 1; transform: none; }
+.hero .reveal { transition-duration: .9s; }
 @media (prefers-reduced-motion: reduce) {
-  .hero > *, .sec { animation: none; } .dot::after { animation: none; display: none; }
-  .proj, .proj .arrow, .links a { transition: none; }
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .scroll i { animation: none; }
 }
 
-@media (max-width: 640px) {
-  .page { padding-block: 64px 40px; gap: 72px; }
-  .sec { grid-template-columns: minmax(0, 1fr); gap: 16px; }
-  .skills { grid-template-columns: minmax(0, 1fr); gap: 18px; }
-  .item { grid-template-columns: minmax(0, 1fr); }
-  .item .when { padding-top: 0; }
+/* ---------- responsive ---------- */
+@media (max-width: 1000px) {
+  .nav ul { display: none; }
+  .block-inner { grid-template-columns: 1fr; }
+  .block-head p { max-width: 32em; }
+}
+@media (max-width: 760px) {
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .rail { display: none; }
+  .hero-text { grid-column: 1; padding: 112px 0 0; }
+  .hello { padding-top: 48px; }
+  .scroll { display: none; }
+  .portrait { grid-column: 1; grid-row: 2; justify-self: end; width: min(92%, 440px); margin: 28px calc(var(--pad) * -1) 0 0; }
+  section.block { grid-template-columns: 1fr; }
+  .block-inner { grid-column: 1; padding: 56px 0 64px; }
+  .projects, .skills { grid-template-columns: 1fr; }
+  .row { grid-template-columns: 1fr; }
+  .row .when { grid-row: auto; grid-column: 1; padding-top: 2px; }
+  .skill { grid-template-columns: 1fr; gap: 4px; }
+  .stats { gap: 30px; }
 }
 </style>
 </head>
 <body>
-<main class="page">
-  <header class="hero">
-    <div class="status"><span class="dot" aria-hidden="true"></span>Open to work · İstanbul</div>
-    <h1>Yunus Kangal<br><span class="soft">Software Engineer</span></h1>
-    <p class="lede">Backend systems, digital forensics, data and AI, built with <strong>C#, .NET and Python</strong>. Mathematical Engineer from Yıldız Technical University.</p>
-    <nav class="links" aria-label="Links">
-      <a class="primary" href="#contact">Get in touch</a>
-      <a href="https://github.com/Yunuskngl" target="_blank" rel="noopener">GitHub ↗</a>
-      <a href="https://www.linkedin.com/in/yunus-kangal-53a703229/" target="_blank" rel="noopener">LinkedIn ↗</a>
-    </nav>
-  </header>
 
-  <section class="sec" aria-labelledby="about-h">
-    <h2 id="about-h">About</h2>
-    <div class="body prose">
-      <p>I like problems I can reason about, model and test. That comes from my background in mathematical engineering, and it’s how I approach engineering work: clear data, clear interfaces, code that holds up.</p>
-      <p>Most of my experience so far is in digital forensics. At TÜBİTAK BİLGEM I built data-extraction features for a forensics application, and my graduation thesis studied how iOS manages cryptographic keys. It led to <a href="#projects">dYKcrpytor</a>, an open-source tool that decrypts the iOS Keychain.</p>
-      <p>Working with extracted data made me care about what happens next: turning raw records into something you can query, analyze and learn from. That is why I studied machine learning and why I’m now building with LLM APIs, alongside deepening ASP.NET Core and software architecture.</p>
+<header class="nav" id="nav">
+  <a class="logo" href="#top" aria-label="Yunus Kangal, back to top">YK</a>
+  <nav aria-label="Sections">
+    <ul>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#certificates">Certificates</a></li>
+    </ul>
+  </nav>
+  <a class="cta" href="#contact">Get in touch ↗</a>
+</header>
+
+<main id="top">
+  <section class="hero" aria-label="Introduction">
+    <div class="rail" aria-hidden="true">
+      <span class="label">Software engineer</span>
+      <span class="rule"></span>
+      <span class="year">2026</span>
     </div>
+
+    <div class="hero-text">
+      <div class="stats reveal">
+        <div class="stat"><b><sup>+</sup>7</b><span>Projects built</span></div>
+        <div class="stat"><b><sup>+</sup>5</b><span>Certificates earned</span></div>
+      </div>
+      <h1 class="hello reveal">Hello</h1>
+      <p class="tag reveal">— It’s Yunus, a software engineer
+        <small>Backend systems, digital forensics, data and AI, built with C#, .NET and Python. Mathematical Engineer from Yıldız Technical University, based in İstanbul.</small>
+      </p>
+      <a class="scroll" href="#experience">Scroll down <i aria-hidden="true">↓</i></a>
+    </div>
+
+    <figure class="portrait reveal" style="margin-bottom:0">
+      <picture>
+        <source srcset="assets/yunus.webp" type="image/webp">
+        <img src="assets/yunus.png" width="491" height="514" alt="Portrait of Yunus Kangal">
+      </picture>
+    </figure>
   </section>
 
-  <section class="sec" aria-labelledby="focus-h">
-    <h2 id="focus-h">Focus areas</h2>
-    <div class="body focus">
-      <div>
-        <h3>Digital forensics &amp; mobile security</h3>
-        <p>Mobile data extraction, iOS Keychain and Secure Enclave, key management, encrypted app databases such as SQLCipher. Nearly two years on a production forensics team and a thesis in the field.</p>
+  <!-- 01 Experience -->
+  <section class="block" id="experience" aria-labelledby="exp-h">
+    <div class="block-inner">
+      <div class="block-head reveal">
+        <span class="num">01</span>
+        <h2 id="exp-h">Experience</h2>
+        <p>Production work on a digital forensics team, plus mentoring at university.</p>
       </div>
-      <div>
-        <h3>Data</h3>
-        <p>SQL and relational modelling, parsing messy formats (SQLite, plist) into clean, queryable datasets, and Python for analysis. Foundations in supervised and unsupervised machine learning.</p>
-      </div>
-      <div>
-        <h3>AI</h3>
-        <p>Bringing language models into real software: LLM APIs, tool use, retrieval over your own data and the Model Context Protocol. Currently building with the Claude API.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec" aria-labelledby="exp-h">
-    <h2 id="exp-h">Experience</h2>
-    <div class="body list">
-      <div class="item">
-        <h3>Software Engineer <span class="sub">· TÜBİTAK BİLGEM · Part-time</span></h3>
-        <span class="when">Nov 2024 – Aug 2026</span>
-        <ul>
-          <li>Worked as a researcher and software developer on a digital forensics application, contributing to both backend and frontend.</li>
-          <li>Built the WhatsApp and Signal data-extraction modules and shipped bug fixes using C#, SQL and Python.</li>
-          <li>Worked on a desktop application built on a microservices architecture, using Jenkins, Docker and cloud systems in the CI/CD pipeline.</li>
-          <li>Decrypted the encryption algorithms in the cryptographic structure of the iOS Keychain architecture, enabling key extraction for 90% of iOS versions.</li>
-        </ul>
-      </div>
-      <div class="item">
-        <h3>Software Engineering Intern <span class="sub">· TÜBİTAK BİLGEM</span></h3>
-        <span class="when">Sep 2024 – Oct 2024</span>
-        <ul>
-          <li>Wrote automated data extraction scripts in Python and C# to eliminate repetitive manual tasks and improve workflow speed.</li>
-          <li>Collaborated with the team to build software prototypes and generate automated system health reports.</li>
-        </ul>
-      </div>
-      <div class="item">
-        <h3>Algorithm Team Leader &amp; Mentor <span class="sub">· Yıldız Technical University SKY LAB</span></h3>
-        <span class="when">Oct 2023 – Jun 2026</span>
-        <ul>
-          <li>Led and mentored a team of 12 students, teaching core software engineering concepts, algorithms and clean code practices.</li>
-          <li>Organized technical workshops and code reviews to help the team improve their practical problem-solving skills.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec" aria-labelledby="edu-h">
-    <h2 id="edu-h">Education</h2>
-    <div class="body list">
-      <div class="item">
-        <h3>B.Sc. Mathematical Engineering <span class="sub">· Yıldız Technical University</span></h3>
-        <span class="when">Jun 2026</span>
-        <p><strong style="color:var(--fg); font-weight:500">Thesis:</strong> Cryptographic Key Management Vulnerabilities in Mobile Devices. Advisor: Assoc. Prof. Serkan Onar.</p>
-        <ul>
-          <li>Examined the iOS Secure Enclave and Keychain from a mobile forensics and mathematical engineering perspective, testing how far they can be bypassed depending on the device’s lock state.</li>
-          <li>On an iOS 17 full file system image, showed that in the After First Unlock state the decryption keys remain in memory, so the Keychain can be fully decrypted.</li>
-          <li>In a case study on Signal Messenger, recovered its 256-bit SQLCipher key from the Keychain and read the full chat history in plaintext: security depends on key management, not only on strong algorithms.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec" id="projects" aria-labelledby="proj-h">
-    <h2 id="proj-h">Projects</h2>
-    <div class="body projects">
-      <a class="proj feature" href="https://github.com/Yunuskngl/dYKcrpytor-Keychain-Decryptor-" target="_blank" rel="noopener">
-        <h3>dYKcrpytor <span class="badge">Graduation thesis</span></h3>
-        <span class="arrow" aria-hidden="true">↗</span>
-        <p>Open-source tool built for my thesis. Decrypts the iOS Keychain from <code>keychain-2.db</code> and <code>backup_keychain_v2.plist</code> without commercial forensics software, handling the AES-GCM layers and converting backup plists into a clean SQLite database for investigators.</p>
-        <span class="stack">Python · PyQt6 · SQLite · Cryptography</span>
-      </a>
-      <a class="proj" href="https://github.com/Yunuskngl/PersonaChat" target="_blank" rel="noopener">
-        <h3>PersonaChat</h3>
-        <span class="arrow" aria-hidden="true">↗</span>
-        <p>Desktop app for practising English by chatting with 100 AI characters, with workplace simulations, email practice and PDF learning reports. Runs on a local model through Ollama or on Claude, OpenAI and Gemini, with per-character memory and background workers.</p>
-        <span class="stack">C# · .NET 10 · ASP.NET Core · EF Core · SQLite · LLM APIs</span>
-      </a>
-      <a class="proj" href="https://github.com/Yunuskngl/Phase_Space_and_Stability_Analysis_" target="_blank" rel="noopener">
-        <h3>Phase Space &amp; Stability Analysis</h3>
-        <span class="arrow" aria-hidden="true">↗</span>
-        <p>Visualizations of fixed points, phase portraits and Lyapunov exponents for dynamical systems.</p>
-        <span class="stack">MATLAB</span>
-      </a>
-      <a class="proj" href="https://github.com/skylab-kulubu/Algolab_new" target="_blank" rel="noopener">
-        <h3>Algolab</h3>
-        <span class="arrow" aria-hidden="true">↗</span>
-        <p>Algorithm training material built with the YTU SKY LAB team.</p>
-        <span class="stack">C++</span>
-      </a>
-      <a class="proj" href="https://github.com/Yunuskngl/Sky_Lab_Akademi" target="_blank" rel="noopener">
-        <h3>SKY LAB Akademi</h3>
-        <span class="arrow" aria-hidden="true">↗</span>
-        <p>Code and exercises from the C programming course I taught.</p>
-        <span class="stack">C</span>
-      </a>
-      <a class="proj" href="https://github.com/Yunuskngl/Leetcode_Hackerrank_Solutions" target="_blank" rel="noopener">
-        <h3>LeetCode &amp; HackerRank Solutions</h3>
-        <span class="arrow" aria-hidden="true">↗</span>
-        <p>Ongoing practice in algorithms and data structures.</p>
-        <span class="stack">C++</span>
-      </a>
-    </div>
-  </section>
-
-  <section class="sec" aria-labelledby="skills-h">
-    <h2 id="skills-h">Skills</h2>
-    <div class="body skills">
-      <div><h3>Languages</h3><p>C#, Python, TypeScript, SQL, C/C++</p></div>
-      <div><h3>Backend</h3><p>.NET, ASP.NET Core, REST APIs, Entity Framework, Node.js</p></div>
-      <div><h3>Databases</h3><p>PostgreSQL, MySQL, SQLite, Redis</p></div>
-      <div><h3>Forensics &amp; security</h3><p>Mobile data extraction, iOS Keychain, AES-GCM, SQLCipher</p></div>
-      <div><h3>Data &amp; AI</h3><p>NumPy, scikit-learn, ML fundamentals, LLM APIs</p></div>
-      <div><h3>Tools</h3><p>Git, Docker, Jenkins, CI/CD, Linux</p></div>
-      <div><h3>Architecture</h3><p>Microservices, REST, desktop apps</p></div>
-    </div>
-  </section>
-
-  <section class="sec" aria-labelledby="cert-h">
-    <h2 id="cert-h">Certificates</h2>
-    <div class="body list">
-      <div class="item cert">
-        <h3>Unsupervised Learning, Recommenders, Reinforcement Learning</h3>
-        <a class="verify" href="https://coursera.org/share/f22261c2f1704c0488bc8239b3de7bb8" target="_blank" rel="noopener">Verify ↗</a>
-        <p>DeepLearning.AI · Coursera · 2024</p>
-      </div>
-      <div class="item cert">
-        <h3>Supervised Machine Learning: Regression and Classification</h3>
-        <a class="verify" href="https://coursera.org/share/e2a56b3a6a36e8ac28efb0ad33f05569" target="_blank" rel="noopener">Verify ↗</a>
-        <p>DeepLearning.AI · Coursera · 2024</p>
-      </div>
-      <div class="item cert">
-        <h3>Object-Oriented Data Structures in C++</h3>
-        <a class="verify" href="https://coursera.org/share/153cfcdb255562f96088b25f2331eb85" target="_blank" rel="noopener">Verify ↗</a>
-        <p>University of Illinois Urbana-Champaign · Coursera · 2023</p>
-      </div>
-      <div class="item cert">
-        <h3>Software Development with C and C++</h3>
-        <a class="verify" href="https://www.udemy.com/certificate/UC-e839a5be-ddd8-4cca-8ffd-f9d76b754114/" target="_blank" rel="noopener">Verify ↗</a>
-        <p>Kaan Academy · Udemy · 2023</p>
-      </div>
-      <div class="item cert">
-        <h3>Complete C Programming, Beginner to Advanced</h3>
-        <a class="verify" href="https://www.udemy.com/certificate/UC-5f222eb4-5a25-4ad9-80b0-abfa03f6b005/" target="_blank" rel="noopener">Verify ↗</a>
-        <p>Can Boz · Udemy · 2023</p>
+      <div class="rows">
+        <article class="row reveal">
+          <h3>Software Engineer</h3>
+          <span class="when">Nov 2024 – Aug 2026</span>
+          <span class="org">TÜBİTAK BİLGEM · Part-time</span>
+          <ul>
+            <li>Worked as a researcher and software developer on a digital forensics application, contributing to both backend and frontend.</li>
+            <li>Built the WhatsApp and Signal data-extraction modules and shipped bug fixes using C#, SQL and Python.</li>
+            <li>Worked on a desktop application built on a microservices architecture, using Jenkins, Docker and cloud systems in the CI/CD pipeline.</li>
+            <li>Decrypted the encryption algorithms in the cryptographic structure of the iOS Keychain architecture, enabling key extraction for 90% of iOS versions.</li>
+          </ul>
+        </article>
+        <article class="row reveal">
+          <h3>Software Engineering Intern</h3>
+          <span class="when">Sep 2024 – Oct 2024</span>
+          <span class="org">TÜBİTAK BİLGEM</span>
+          <ul>
+            <li>Wrote automated data extraction scripts in Python and C# to eliminate repetitive manual tasks and improve workflow speed.</li>
+            <li>Collaborated with the team to build software prototypes and generate automated system health reports.</li>
+          </ul>
+        </article>
+        <article class="row reveal">
+          <h3>Algorithm Team Leader &amp; Mentor</h3>
+          <span class="when">Oct 2023 – Jun 2026</span>
+          <span class="org">Yıldız Technical University SKY LAB</span>
+          <ul>
+            <li>Led and mentored a team of 12 students, teaching core software engineering concepts, algorithms and clean code practices.</li>
+            <li>Organized technical workshops and code reviews to help the team improve their practical problem-solving skills.</li>
+          </ul>
+        </article>
       </div>
     </div>
   </section>
 
-  <section class="sec" id="contact" aria-labelledby="contact-h">
-    <h2 id="contact-h">Contact</h2>
-    <div class="body">
-      <div class="contact-mail"><a id="email" href="mailto:yunuskanngal@gmail.com">yunuskanngal@gmail.com</a><button class="copy" id="copy-email" type="button">Copy</button></div>
-      <nav class="links" aria-label="Profiles">
+  <!-- 02 Projects -->
+  <section class="block" id="projects" aria-labelledby="proj-h">
+    <div class="block-inner">
+      <div class="block-head reveal">
+        <span class="num">02</span>
+        <h2 id="proj-h">Projects</h2>
+        <p>From a thesis tool to a live product. All code is on GitHub.</p>
+      </div>
+      <div class="projects">
+        <a class="proj wide reveal" href="https://github.com/Yunuskngl/dYKcrpytor-Keychain-Decryptor-" target="_blank" rel="noopener">
+          <span class="kicker">Graduation thesis · Open source</span>
+          <h3>dYKcrpytor</h3>
+          <span class="arrow" aria-hidden="true">↗</span>
+          <p>Open-source tool built for my thesis. Decrypts the iOS Keychain from <code>keychain-2.db</code> and <code>backup_keychain_v2.plist</code> without commercial forensics software, handling the AES-GCM layers and converting backup plists into a clean SQLite database for investigators.</p>
+          <span class="stack">Python · PyQt6 · SQLite · Cryptography</span>
+        </a>
+        <div class="proj wide reveal">
+          <span class="kicker">Live product · Built with Recep Çelik</span>
+          <h3>Ocean Waves</h3>
+          <p>Full-stack catalogue and commerce platform for a maritime service company: a product storefront, a detailed admin panel and a REST API. Layered architecture with repositories, DTOs and dependency injection; guard-based authorization with token rotation, global validation and automatic token refresh. Client and admin apps are fully isolated.</p>
+          <span class="stack">NestJS · Prisma · PostgreSQL · Docker · Next.js · React · Tailwind · Zustand · Google Cloud Storage</span>
+          <div class="links">
+            <a href="https://www.oceanwavesms.com" target="_blank" rel="noopener">Live site ↗</a>
+            <a href="https://github.com/Yunuskngl/ocean-waves" target="_blank" rel="noopener">Code ↗</a>
+          </div>
+        </div>
+        <a class="proj wide reveal" href="https://github.com/Yunuskngl/PersonaChat" target="_blank" rel="noopener">
+          <span class="kicker">Open source · Desktop app</span>
+          <h3>PersonaChat</h3>
+          <span class="arrow" aria-hidden="true">↗</span>
+          <p>Desktop app for practising English by chatting with 100 AI characters, with workplace simulations, email practice and PDF learning reports. Runs on a local model through Ollama or on Claude, OpenAI and Gemini, with per-character memory and background workers.</p>
+          <span class="stack">C# · .NET 10 · ASP.NET Core · EF Core · SQLite · LLM APIs</span>
+        </a>
+        <a class="proj reveal" href="https://github.com/Yunuskngl/Phase_Space_and_Stability_Analysis_" target="_blank" rel="noopener">
+          <h3>Phase Space &amp; Stability Analysis</h3>
+          <span class="arrow" aria-hidden="true">↗</span>
+          <p>Visualizations of fixed points, phase portraits and Lyapunov exponents for dynamical systems.</p>
+          <span class="stack">MATLAB</span>
+        </a>
+        <a class="proj reveal" href="https://github.com/skylab-kulubu/Algolab_new" target="_blank" rel="noopener">
+          <h3>Algolab</h3>
+          <span class="arrow" aria-hidden="true">↗</span>
+          <p>Algorithm training material built with the YTU SKY LAB team.</p>
+          <span class="stack">C++</span>
+        </a>
+        <a class="proj reveal" href="https://github.com/Yunuskngl/Sky_Lab_Akademi" target="_blank" rel="noopener">
+          <h3>SKY LAB Akademi</h3>
+          <span class="arrow" aria-hidden="true">↗</span>
+          <p>Code and exercises from the C programming course I taught.</p>
+          <span class="stack">C</span>
+        </a>
+        <a class="proj reveal" href="https://github.com/Yunuskngl/Leetcode_Hackerrank_Solutions" target="_blank" rel="noopener">
+          <h3>LeetCode &amp; HackerRank Solutions</h3>
+          <span class="arrow" aria-hidden="true">↗</span>
+          <p>Ongoing practice in algorithms and data structures.</p>
+          <span class="stack">C++</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 Education -->
+  <section class="block" id="education" aria-labelledby="edu-h">
+    <div class="block-inner">
+      <div class="block-head reveal">
+        <span class="num">03</span>
+        <h2 id="edu-h">Education</h2>
+      </div>
+      <div class="rows">
+        <article class="row reveal">
+          <h3>B.Sc. Mathematical Engineering</h3>
+          <span class="when">Jun 2026</span>
+          <span class="org">Yıldız Technical University</span>
+          <p><strong style="font-weight:500;color:var(--ink)">Thesis:</strong> Cryptographic Key Management Vulnerabilities in Mobile Devices. Advisor: Assoc. Prof. Serkan Onar.</p>
+          <ul>
+            <li>Examined the iOS Secure Enclave and Keychain from a mobile forensics and mathematical engineering perspective, testing how far they can be bypassed depending on the device’s lock state.</li>
+            <li>On an iOS 17 full file system image, showed that in the After First Unlock state the decryption keys remain in memory, so the Keychain can be fully decrypted.</li>
+            <li>In a case study on Signal Messenger, recovered its 256-bit SQLCipher key from the Keychain and read the full chat history in plaintext: security depends on key management, not only on strong algorithms.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 Skills -->
+  <section class="block" id="skills" aria-labelledby="skills-h">
+    <div class="block-inner">
+      <div class="block-head reveal">
+        <span class="num">04</span>
+        <h2 id="skills-h">Skills</h2>
+      </div>
+      <dl class="skills reveal">
+        <div class="skill"><dt>Languages</dt><dd>C#, Python, TypeScript, SQL, C/C++</dd></div>
+        <div class="skill"><dt>Backend</dt><dd>.NET, ASP.NET Core, REST APIs, Entity Framework, Node.js, NestJS</dd></div>
+        <div class="skill"><dt>Databases</dt><dd>PostgreSQL, MySQL, SQLite, Redis</dd></div>
+        <div class="skill"><dt>Forensics &amp; security</dt><dd>Mobile data extraction, iOS Keychain, AES-GCM, SQLCipher</dd></div>
+        <div class="skill"><dt>Data &amp; AI</dt><dd>NumPy, scikit-learn, ML fundamentals, LLM APIs</dd></div>
+        <div class="skill"><dt>Tools</dt><dd>Git, Docker, Jenkins, CI/CD, Linux</dd></div>
+        <div class="skill"><dt>Architecture</dt><dd>Microservices, REST, desktop apps</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- 05 Certificates -->
+  <section class="block" id="certificates" aria-labelledby="cert-h">
+    <div class="block-inner">
+      <div class="block-head reveal">
+        <span class="num">05</span>
+        <h2 id="cert-h">Certificates</h2>
+      </div>
+      <div class="certs">
+        <div class="cert reveal">
+          <h3>Unsupervised Learning, Recommenders, Reinforcement Learning</h3>
+          <p>DeepLearning.AI · Coursera · 2024</p>
+          <a href="https://coursera.org/share/f22261c2f1704c0488bc8239b3de7bb8" target="_blank" rel="noopener">Verify ↗</a>
+        </div>
+        <div class="cert reveal">
+          <h3>Supervised Machine Learning: Regression and Classification</h3>
+          <p>DeepLearning.AI · Coursera · 2024</p>
+          <a href="https://coursera.org/share/e2a56b3a6a36e8ac28efb0ad33f05569" target="_blank" rel="noopener">Verify ↗</a>
+        </div>
+        <div class="cert reveal">
+          <h3>Object-Oriented Data Structures in C++</h3>
+          <p>University of Illinois Urbana-Champaign · Coursera · 2023</p>
+          <a href="https://coursera.org/share/153cfcdb255562f96088b25f2331eb85" target="_blank" rel="noopener">Verify ↗</a>
+        </div>
+        <div class="cert reveal">
+          <h3>Software Development with C and C++</h3>
+          <p>Kaan Academy · Udemy · 2023</p>
+          <a href="https://www.udemy.com/certificate/UC-e839a5be-ddd8-4cca-8ffd-f9d76b754114/" target="_blank" rel="noopener">Verify ↗</a>
+        </div>
+        <div class="cert reveal">
+          <h3>Complete C Programming, Beginner to Advanced</h3>
+          <p>Can Boz · Udemy · 2023</p>
+          <a href="https://www.udemy.com/certificate/UC-5f222eb4-5a25-4ad9-80b0-abfa03f6b005/" target="_blank" rel="noopener">Verify ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="block contact" id="contact" aria-labelledby="contact-h">
+    <div class="block-inner">
+      <h2 class="big reveal" id="contact-h">Let’s work<br>together.</h2>
+      <div class="mail reveal">
+        <a id="email" href="mailto:yunuskanngal@gmail.com">yunuskanngal@gmail.com</a>
+        <button class="copy" id="copy-email" type="button">Copy</button>
+      </div>
+      <div class="socials reveal">
         <a href="https://github.com/Yunuskngl" target="_blank" rel="noopener">GitHub ↗</a>
         <a href="https://www.linkedin.com/in/yunus-kangal-53a703229/" target="_blank" rel="noopener">LinkedIn ↗</a>
         <a href="https://leetcode.com/u/yunuskanngal/" target="_blank" rel="noopener">LeetCode ↗</a>
         <a href="https://www.hackerrank.com/profile/yunuskanngal" target="_blank" rel="noopener">HackerRank ↗</a>
-      </nav>
+      </div>
+      <div class="foot"><span>© 2026 Yunus Kangal</span><span>İstanbul</span></div>
     </div>
   </section>
-
-  <footer><span>© 2026 Yunus Kangal</span><span>İstanbul</span></footer>
 </main>
 
 <script>
 (function () {
-  const btn = document.getElementById('copy-email');
-  const el = document.getElementById('email');
-  btn.addEventListener('click', () => {
-    const done = () => { btn.textContent = 'Copied'; setTimeout(() => btn.textContent = 'Copy', 1600); };
-    const fallback = () => { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = 'Press ⌘C'; };
-    try { navigator.clipboard.writeText(el.textContent.trim()).then(done, fallback); } catch (e) { fallback(); }
+  var nav = document.getElementById('nav');
+  var onScroll = function () { nav.classList.toggle('scrolled', window.scrollY > 24); };
+  onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
+
+  var items = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    items.forEach(function (el) { io.observe(el); });
+  } else { items.forEach(function (el) { el.classList.add('in'); }); }
+
+  var btn = document.getElementById('copy-email');
+  btn.addEventListener('click', function () {
+    var text = 'yunuskanngal@gmail.com';
+    var done = function () { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy'; }, 1600); };
+    if (navigator.clipboard) { navigator.clipboard.writeText(text).then(done, done); } else { done(); }
   });
 })();
 </script>
